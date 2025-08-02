@@ -1,0 +1,114 @@
+#pgzero
+# Hücrelerden oluşan oyun penceresi
+dirt = Actor("Dirt")
+grass = Actor("Grass")
+water = Actor("Water")
+redstone = Actor("Redstone")
+gold = Actor("Gold")
+tnt = Actor("Tnt")
+stone = Actor("Stone")
+water = Actor("Water")
+wood = Actor("Wood")
+leaves = Actor("Leaves")
+sand = Actor("Sand")
+glass = Actor("Glass")
+coat = Actor("Coat")
+diamond = Actor("diamond")
+guy1 = Actor("guy7",topleft=(5, 90))
+guysag = Actor("guysag4")
+guysol = Actor("guysol2")
+dirt.width = 50 # Hücrenin genişliği
+dirt.height = 50 # Hücrenin yüksekliği
+WIDTH = dirt.width * 21
+HEIGHT = dirt.height * 10
+TITLE = "EKOMC" # Oyunun Adı
+FPS = 200 # Saniyedeki Kare Sayısı
+
+haritam = [
+    [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,],
+    [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,],
+    [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4,],
+    [9, 0, 0, 9, 0, 9, 9, 0, 0, 9, 9, 9, 0, 9, 0, 9, 0, 9, 0, 0, 9,],
+    [0, 0, 0, 3, 0, 0, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0,],
+    [0, 3, 3, 0, 0, 6, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0,],
+    [0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 2, 0, 0, 14, 0, 14, 0, 0, 0,],
+    [2, 0, 2, 0, 0, 0, 0, 12, 0, 0, 12, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0,],
+    [0, 14, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 14, 0, 0, 0, 0, 0, 13,]]
+
+def harita_cizim():
+    for i in  range ( len ( haritam ) ) : 
+        for j in  range ( len ( haritam [ 0 ] ) ) :
+            if haritam[i][j] == 0:
+                dirt. left = dirt . width * j
+                dirt. top = dirt. height * i
+                dirt. draw ( )
+            elif haritam[i][j] == 1:
+                grass. left = dirt . width * j
+                grass. top = dirt. height * i
+                grass. draw ( )
+            elif haritam[i][j] == 2:
+                gold. left = dirt . width * j
+                gold. top = dirt. height * i
+                gold. draw ( )
+            elif haritam[i][j] == 3:
+                coat. left = dirt. width * j
+                coat. top = dirt. height * i
+                coat. draw ( )
+            elif haritam[i][j] == 4:
+                sand. left = dirt . width * j
+                sand. top = dirt. height * i
+                sand. draw ( )
+            elif haritam[i][j] == 5:
+                wood. left = dirt . width * j
+                wood. top = dirt. height * i
+                wood. draw ( )
+            elif haritam[i][j] == 6:
+                tnt. left = dirt . width * j
+                tnt. top = dirt. height * i
+                tnt. draw ( )
+            elif haritam[i][j] == 7:
+                glass. left = dirt . width * j
+                glass. top = dirt. height * i
+                glass. draw ( )
+            elif haritam[i][j] == 13:
+                leaves. left = dirt . width * j
+                leaves. top = dirt. height * i
+                leaves. draw ( )
+            elif haritam[i][j] == 9:
+                stone. left = dirt . width * j
+                stone. top = dirt. height * i
+                stone. draw ( )
+            elif haritam[i][j] == 10:
+                water. left = dirt . width * j
+                water. top = dirt. height * i
+                water. draw ( )
+            elif haritam[i][j] == 11:
+                stone. left = dirt . width * j
+                stone. top = dirt. height * i
+                stone. draw ( )
+            elif haritam[i][j] == 12:
+                redstone. left = dirt . width * j
+                redstone. top = dirt. height * i
+                redstone. draw ( )
+            elif haritam[i][j] == 14:
+                diamond. left = dirt . width * j
+                diamond. top = dirt. height * i
+                diamond. draw ( )
+def draw():
+    screen.fill("#87CEEB")
+    harita_cizim()
+    guy1.draw()
+    
+    
+def on_key_down(key):
+    if keyboard.w and guy1.y >150:
+        guy1.y -= dirt.width
+    elif keyboard.d and guy1.x <1000:
+        guy1.x += dirt.width
+        guy1.image = "guysag4"
+    elif keyboard.a and guy1.x > 50:
+        guy1.x -= dirt.width
+        guy1.image = "guysol2"
+    elif keyboard.s:
+        guy1.y += dirt.height
